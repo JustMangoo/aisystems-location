@@ -1,19 +1,20 @@
 import { useState } from "react";
-import leaf from "../assets/leaf.jpg";
-import backward from "../assets/backward.jpg";
+import rio from "../assets/rio.avif";
 
 export default function BackwardChain() {
   // Knowledge base
   const [facts, setFacts] = useState({
-    yellow_leaves: null,
-    spots: null,
+    being_in_the_city: null,
+    cultural_cities: null,
+    visiting_museums: null,
+    going_to_festivals: null
   });
 
   // User Interface (UI)
   const askQuestion = (fact) => {
     return (
       <div key={fact}>
-        <p>Does the plant have {fact.replace("_", " ")}?</p>
+        <p>Do you prefer {fact.replaceAll("_", " ")}?</p>
         <button onClick={() => setFacts({ ...facts, [fact]: "Yes" })}>
           Yes
         </button>
@@ -26,21 +27,31 @@ export default function BackwardChain() {
   const backwardChain = (goal) => {
     let conclusions = [];
 
-    if (goal === "fungal_infection") {
-      if (facts.yellow_leaves === null) {
-        return askQuestion("yellow_leaves");
+    if (goal === "Rio_De_Janeiro") { 
+      if (facts.being_in_the_city === null) {
+        return askQuestion("being_in_the_city");
       }
-      conclusions.push(`yellow leaves: ${facts.yellow_leaves}`);
+      conclusions.push(`being_in_the_city: ${facts.being_in_the_city}`);
 
-      if (facts.spots === null && facts.yellow_leaves === "Yes") {
-        return askQuestion("spots");
+      if (facts.cultural_cities === null && facts.being_in_the_city === "Yes") {
+        return askQuestion("cultural_cities");
       }
-      conclusions.push(`spots: ${facts.spots}`);
+      conclusions.push(`cultural_cities: ${facts.cultural_cities}`);
 
-      if (facts.yellow_leaves == "Yes" && facts.spots === "Yes") {
+      if (facts.visiting_museums === null && facts.being_in_the_city === "Yes" && facts.cultural_cities === "Yes") {
+        return askQuestion("visiting_museums");
+      }
+      conclusions.push(`visiting_museums: ${facts.visiting_museums}`);
+
+      if (facts. going_to_festivals === null && facts.being_in_the_city === "Yes" && facts.cultural_cities === "Yes" && facts.visiting_museums === "No") {
+        return askQuestion("going_to_festivals");
+      }
+      conclusions.push(`going_to_festivals: ${facts. going_to_festivals}`);
+     
+      if (facts.being_in_the_city == "Yes" && facts.cultural_cities === "Yes" && facts.visiting_museums === "No" && facts. going_to_festivals === "Yes") {
         return (
           <div>
-            <p>CONCLUSION: The plant HAS a fungal infection.</p>
+            <p>CONCLUSION: It may be a good fit</p>
             <p>Based on the facts:</p>
             <ul>
               {conclusions.map((fact, index) =>
@@ -55,7 +66,7 @@ export default function BackwardChain() {
     // If criteria is not met, show this
     return (
       <div>
-        <p>TEST CONCLUSION: The plant does NOT have a fungal infection.</p>
+        <p>CONCLUSION: It may not be a good vacation spot for you.</p>
         <p>Based on the facts:</p>
         <ul>
           {conclusions.map((fact, index) =>
@@ -67,28 +78,16 @@ export default function BackwardChain() {
   };
 
   // This is the "diagnosis" that can be confirmed:
-  const goal = "fungal_infection";
+  const goal = "Rio_De_Janeiro";
 
   return (
     <div>
-      <h1>TEST Backward Chaining: Plant Disease Diagnosis</h1>
-      <p>
-        Does your plant have a{" "}
-        <span style={{ backgroundColor: "yellow" }}>
-          {goal.replace("_", " ")}
-        </span>
-        ?
-      </p>
+      <h1>Is Rio De Janeiro a good place for your vacation?</h1>
       {backwardChain(goal)}
       <img
-        src={leaf}
+        src={rio}
         alt="image"
         style={{ marginTop: "25px", width: "250px" }}
-      />
-      <img
-        src={backward}
-        alt="image"
-        style={{ marginTop: "25px", display: "block" }}
       />
     </div>
   );
