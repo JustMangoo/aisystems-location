@@ -55,7 +55,7 @@ export default function BackwardChain() {
     // If criteria is not met, show this
     return (
       <div>
-        <p>CONCLUSION: The plant does NOT have a fungal infection.</p>
+        <p>TEST CONCLUSION: The plant does NOT have a fungal infection.</p>
         <p>Based on the facts:</p>
         <ul>
           {conclusions.map((fact, index) =>
