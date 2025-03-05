@@ -130,7 +130,9 @@ export default function ForwardChain() {
 
   return (
     <div>
-      <h1 className={style.headerOne}>Forward Chaining: Insect Recogniser</h1>
+      <h1 className={style.headerOne}>
+        Forward Chaining: Insect Recogniser TEST
+      </h1>
       {forwardChain()}
       <img
         src={leaf}
