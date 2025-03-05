@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.PrimaryButton {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 32px;
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect */
+.PrimaryButton:hover {
+  background-color: #2355de; /* Dark blue background */
+  border: none;
+  color: white; /* Keep text color white */
+}
+
+.hero {
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  border-radius: 40px;
+  margin: 20px 40px;
+}
+
+.heroOverlay {
+  color: white;
+  width: 550px;
+  padding: 20px;
+  margin-left: 40px;
+  text-align: start;
+}
+
+.heroTitle {
+  font-size: 3em;
+  margin: 0;
+}
+
+.heroText {
+  font-size: 1.2em;
+}
+
+.section {
+  margin: 60px 100px;
+}
+
+.sectionTop {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Reduce gap to 0 to make elements closer */
+}
+
+.sectionTitle {
+  font-size: 2em;
+  margin-bottom: 10px; /* Adjust margin to your preference */
+  padding: 0;
+}
+
+.sectionTopName {
+  font-weight: 600;
+  color: rgb(95, 106, 140);
+}
+
+.sectionText {
+  text-align: center;
+  margin: 20px 32px;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+/* Card container */
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+/* Card styling */
+.card {
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(42, 51, 143, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: scale(1.03); /* Slightly scales the card */
+}
+
+/* Card image */
+.cardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.03); /* Slightly scales the image */
+}
+
+/* Card content */
+.cardContent {
+  padding: 15px;
+}
+
+/* Card title */
+.cardTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
