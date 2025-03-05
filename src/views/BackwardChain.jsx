@@ -4,6 +4,15 @@ import styles from "./BackwardChain.module.css";
 import replayIcon from "../assets/replay_icon.svg";
 
 export default function BackwardChain() {
+
+  // Initial state for facts
+  const initialFacts = {
+    being_in_the_city: null,
+    cultural_cities: null,
+    visiting_museums: null,
+    going_to_festivals: null
+  };
+
   // Knowledge base
   const [facts, setFacts] = useState({
     being_in_the_city: null,
