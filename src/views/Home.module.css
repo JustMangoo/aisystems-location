@@ -4,25 +4,26 @@
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
 }
 
 .PrimaryButton {
   background-color: transparent;
   border: 2px solid white;
   color: white;
-  padding: 10px 20px;
+  padding: 20px 20px;
   font-size: 16px;
-  margin-top: 32px;
-  border-radius: 30px; /* Rounded corners */
+  margin-top: 20px;
+  border-radius: 12px; /* Rounded corners */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 /* Hover effect */
 .PrimaryButton:hover {
-  background-color: #2355de; /* Dark blue background */
+  background-color: white; /* Dark blue background */
   border: none;
-  color: white; /* Keep text color white */
+  color: #4864ab; /* Keep text color white */
 }
 
 .hero {
@@ -72,7 +73,7 @@
 
 .sectionTopName {
   font-weight: 600;
-  color: rgb(95, 106, 140);
+  color: #4864ab;
 }
 
 .sectionText {
@@ -128,4 +129,10 @@
   font-size: 20px;
   margin-bottom: 10px;
   font-weight: 400;
+  color: #212121;
+}
+
+.cardContent h1 {
+  margin-bottom: 12px;
+  color: #4864ab;
 }

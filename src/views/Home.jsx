@@ -2,6 +2,7 @@ import styles from "./Home.module.css";
 import heroImage from "../assets/hero-travel.jpg";
 import card1 from "../assets/card1.jpg";
 import card2 from "../assets/card2.jpg";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -17,7 +18,11 @@ export default function Home() {
             Discover your ideal holiday destination and make the right choice
             for you.
           </p>
-          <button className={styles.PrimaryButton}>Choose destination</button>
+          <button className={styles.PrimaryButton}>
+            <Link to="forwards" style={{ color: "white" }}>
+              Choose destination
+            </Link>
+          </button>
         </div>
       </div>
 
@@ -47,21 +52,35 @@ export default function Home() {
         </div>
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <img className={styles.cardImage} src={card1} alt="Destination 1" />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>
-                Find the best destination based on your preferences
-              </h3>
-            </div>
+            <Link to="forwards">
+              <img
+                className={styles.cardImage}
+                src={card1}
+                alt="Destination 1"
+              />
+              <div className={styles.cardContent}>
+                <h1>Travel Help</h1>
+                <h3 className={styles.cardTitle}>
+                  Find the best destination based on your preferences
+                </h3>
+              </div>
+            </Link>
           </div>
 
           <div className={styles.card}>
-            <img className={styles.cardImage} src={card2} alt="Destination 2" />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>
-                Check if your destination is the right choice
-              </h3>
-            </div>
+            <Link to="backwards">
+              <img
+                className={styles.cardImage}
+                src={card2}
+                alt="Destination 2"
+              />
+              <div className={styles.cardContent}>
+                <h1>Travel Guide</h1>
+                <h3 className={styles.cardTitle}>
+                  Check if your destination is the right choice
+                </h3>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
