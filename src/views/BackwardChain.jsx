@@ -1,5 +1,7 @@
 import { useState } from "react";
 import rio from "../assets/rio.avif";
+import styles from "./BackwardChain.module.css";
+import replayIcon from "../assets/replay_icon.svg";
 
 export default function BackwardChain() {
   // Knowledge base
@@ -10,15 +12,20 @@ export default function BackwardChain() {
     going_to_festivals: null
   });
 
+  // Reset function
+  const resetFacts = () => {
+    setFacts(initialFacts);
+  };
+
   // User Interface (UI)
   const askQuestion = (fact) => {
     return (
       <div key={fact}>
-        <p>Do you prefer {fact.replaceAll("_", " ")}?</p>
-        <button onClick={() => setFacts({ ...facts, [fact]: "Yes" })}>
+        <p className={styles.question}>Do you prefer {fact.replaceAll("_", " ")}?</p>
+        <button className={styles.button} onClick={() => setFacts({ ...facts, [fact]: "Yes" })}>
           Yes
         </button>
-        <button onClick={() => setFacts({ ...facts, [fact]: "No" })}>No</button>
+        <button  className={styles.button} onClick={() => setFacts({ ...facts, [fact]: "No" })}>No</button>
       </div>
     );
   };
@@ -51,7 +58,7 @@ export default function BackwardChain() {
       if (facts.being_in_the_city == "Yes" && facts.cultural_cities === "Yes" && facts.visiting_museums === "No" && facts. going_to_festivals === "Yes") {
         return (
           <div>
-            <p>CONCLUSION: It may be a good fit</p>
+            <p className={styles.conclusion_yes}>It may be a good fit</p>
             <p>Based on the facts:</p>
             <ul>
               {conclusions.map((fact, index) =>
@@ -66,8 +73,8 @@ export default function BackwardChain() {
     // If criteria is not met, show this
     return (
       <div>
-        <p>CONCLUSION: It may not be a good vacation spot for you.</p>
-        <p>Based on the facts:</p>
+        <p className={styles.conclusion_no}>It may not be a good vacation spot for you.</p>
+        <p className={styles.text}>Based on the facts:</p>
         <ul>
           {conclusions.map((fact, index) =>
             fact.includes("null") ? null : <li key={index}>{fact}</li>
@@ -81,13 +88,18 @@ export default function BackwardChain() {
   const goal = "Rio_De_Janeiro";
 
   return (
-    <div>
-      <h1>Is Rio De Janeiro a good place for your vacation?</h1>
+    <div className={styles.container}>
+      <h1 className={styles.headerOne}>Is Rio De Janeiro a good place <br /> for your vacation?</h1>
+      <button
+        className={styles.resetButton}
+        onClick={resetFacts}
+        style={{ marginTop: "20px" }}
+      ><img src={replayIcon} alt="replay button" /> </button>
       {backwardChain(goal)}
       <img
         src={rio}
         alt="image"
-        style={{ marginTop: "25px", width: "250px" }}
+        className={styles.image}
       />
     </div>
   );
