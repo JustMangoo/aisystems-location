@@ -1,144 +1,341 @@
 import { useState } from "react";
-import leaf from "../assets/insects.jpeg";
-import style from "./forwardChain.module.css";
+import style from "./ForwardChain.module.css";
+import replayIcon from "../assets/replay_icon.svg";
 
 export default function ForwardChain() {
-  // Knowledge base
-  const [facts, setFacts] = useState({
-    legs: null,
-    shell: null,
-    two_folded_shell: null,
-    several_parts: null,
-    more_then6_legs: null,
-    more_then8_legs: null,
-    body_oval: null,
-  });
+  // Initial state for facts
+  const initialFacts = {
+    cityOrNature: null,
+    naturePreference: null,
+    wildlifeInterest: null,
+    climatePreference: null,
+    activityPreference: null,
+    cityType: null,
+    ancientArchitectureInterest: null,
+    medievalAtmosphereInterest: null,
+    castlesInterest: null,
+    hotClimatePreference: null,
+    starbucksFan: null,
+    broadwayShowsInterest: null,
+    artAndMuseumsInterest: null,
+    festivalsInterest: null,
+    foodSceneInterest: null,
+  };
 
-  // User Interface (UI)
-  const askQuestion = (fact) => {
+  // State for facts
+  const [facts, setFacts] = useState(initialFacts);
+
+  // Reset function
+  const resetFacts = () => {
+    setFacts(initialFacts);
+  };
+
+  // User Interface (UI) for multiple-choice questions
+  const askQuestion = (fact, question, options) => {
     return (
       <div key={fact}>
-        <p>Does the insect have {fact.replace("_", " ")}?</p>
-        <button onClick={() => setFacts({ ...facts, [fact]: "Yes" })}>
-          Yes
-        </button>
-        <button onClick={() => setFacts({ ...facts, [fact]: "No" })}>No</button>
+        <p className={style.question}>{question}</p>
+        {options.map((option) => (
+          <button
+            key={option}
+            className={style.button}
+            onClick={() => setFacts({ ...facts, [fact]: option })}
+          >
+            {option}
+          </button>
+        ))}
       </div>
     );
   };
 
   // Inference engine
   const forwardChain = () => {
-    if (facts.legs === null) {
-      return askQuestion("legs");
+    if (facts.cityOrNature === null) {
+      return askQuestion(
+        "cityOrNature",
+        "Do you prefer being in the city or close to nature?",
+        ["Nature", "City"]
+      );
     }
 
-    if (facts.shell === null && facts.legs === "No") {
-      return askQuestion("shell");
+    if (facts.cityOrNature === "Nature") {
+      if (facts.naturePreference === null) {
+        return askQuestion(
+          "naturePreference",
+          "Do you prefer mountains, oceans, or forests?",
+          ["Mountains", "Oceans", "Forests"]
+        );
+      }
+
+      if (facts.naturePreference === "Forests") {
+        if (facts.wildlifeInterest === null) {
+          return askQuestion(
+            "wildlifeInterest",
+            "Are you interested in wildlife and hiking?",
+            ["Yes", "No"]
+          );
+        }
+
+        if (facts.wildlifeInterest === "Yes") {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is the Amazon Rainforest.
+            </p>
+          );
+        } else {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Redwood National Park.
+            </p>
+          );
+        }
+      }
+
+      if (facts.naturePreference === "Mountains") {
+        if (facts.climatePreference === null) {
+          return askQuestion(
+            "climatePreference",
+            "Do you prefer a warm or cold climate?",
+            ["Warm", "Cold"]
+          );
+        }
+
+        if (facts.climatePreference === "Warm") {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Patagonia.
+            </p>
+          );
+        } else {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is the Swiss Alps.
+            </p>
+          );
+        }
+      }
+
+      if (facts.naturePreference === "Oceans") {
+        if (facts.activityPreference === null) {
+          return askQuestion(
+            "activityPreference",
+            "Do you prefer to relax or stay active?",
+            ["Relax", "Active"]
+          );
+        }
+
+        if (facts.activityPreference === "Relax") {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Santorini.
+            </p>
+          );
+        } else {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Costa Rica.
+            </p>
+          );
+        }
+      }
     }
 
-    if (
-      facts.two_folded_shell === null &&
-      facts.legs === "No" &&
-      facts.shell === "Yes"
-    ) {
-      return askQuestion("two_folded_shell");
-    }
+    if (facts.cityOrNature === "City") {
+      if (facts.cityType === null) {
+        return askQuestion(
+          "cityType",
+          "Do you like historical, modern, or cultural cities?",
+          ["Historical", "Modern", "Cultural"]
+        );
+      }
 
-    if (
-      facts.several_parts === null &&
-      facts.legs === "No" &&
-      facts.shell === "No"
-    ) {
-      return askQuestion("several_parts");
-    }
+      if (facts.cityType === "Historical") {
+        if (facts.ancientArchitectureInterest === null) {
+          return askQuestion(
+            "ancientArchitectureInterest",
+            "Are you interested in ancient architecture?",
+            ["Yes", "No"]
+          );
+        }
 
-    if (facts.more_then6_legs === null && facts.legs === "Yes") {
-      return askQuestion("more_then6_legs");
-    }
+        if (facts.ancientArchitectureInterest === "Yes") {
+          return (
+            <p className={style.destination}>Your ideal destination is Rome.</p>
+          );
+        } else {
+          if (facts.medievalAtmosphereInterest === null) {
+            return askQuestion(
+              "medievalAtmosphereInterest",
+              "Do you want a medieval atmosphere?",
+              ["Yes", "No"]
+            );
+          }
 
-    if (
-      facts.more_then8_legs === null &&
-      facts.legs === "Yes" &&
-      facts.more_then6_legs === "Yes"
-    ) {
-      return askQuestion("more_then8_legs");
-    }
+          if (facts.medievalAtmosphereInterest === "Yes") {
+            if (facts.castlesInterest === null) {
+              return askQuestion(
+                "castlesInterest",
+                "Are you fascinated by castles?",
+                ["Yes", "No"]
+              );
+            }
 
-    if (
-      facts.body_oval === null &&
-      facts.legs === "Yes" &&
-      facts.more_then6_legs === "Yes" &&
-      facts.more_then8_legs === "Yes"
-    ) {
-      return askQuestion("body_oval");
-    }
+            if (facts.castlesInterest === "Yes") {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is Edinburgh.
+                </p>
+              );
+            } else {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is Istanbul.
+                </p>
+              );
+            }
+          } else {
+            return (
+              <p className={style.destination}>
+                Your ideal destination is Istanbul.
+              </p>
+            );
+          }
+        }
+      }
 
-    let result = "";
-    let conclusion = "Based on the facts: ";
+      if (facts.cityType === "Modern") {
+        if (facts.hotClimatePreference === null) {
+          return askQuestion(
+            "hotClimatePreference",
+            "Do you like hot climates?",
+            ["Yes", "No"]
+          );
+        }
 
-    if (
-      facts.legs === "Yes" &&
-      facts.more_then6_legs === "Yes" &&
-      facts.more_then8_legs === "Yes" &&
-      facts.body_oval === "Yes"
-    ) {
-      result = "The insect is a Crustaceans";
-      conclusion += "more then 8 legs and oval body.";
-    } else if (
-      facts.legs === "Yes" &&
-      facts.more_then6_legs === "Yes" &&
-      facts.more_then8_legs === "Yes"
-    ) {
-      result = "The insect is a Centipedes";
-      conclusion += "more then 8 legs and not an oval body.";
-    } else if (facts.legs === "Yes" && facts.more_then6_legs === "Yes") {
-      result = "The insect is a Arachnids";
-      conclusion += "more then 6 legs and less then 8 legs.";
-    } else if (facts.legs === "Yes") {
-      result = "The insect is a Insect";
-      conclusion += "It has less then 6 legs.";
-    } else if (
-      facts.legs === "No" &&
-      facts.shell === "Yes" &&
-      facts.two_folded_shell === "Yes"
-    ) {
-      result = "The insect is a Molluscs";
-      conclusion += "It has shell and two folded shell.";
-    } else if (facts.legs === "No" && facts.shell === "Yes") {
-      result = "The insect is a Snail";
-      conclusion += "It has shell.";
-    } else if (
-      facts.legs === "No" &&
-      facts.shell === "No" &&
-      facts.several_parts === "Yes"
-    ) {
-      result = "The insect is a Worm";
-      conclusion += "It has several parts.";
-    } else {
-      result = "The insect is a Slug";
-      conclusion += "It has no legs.";
+        if (facts.hotClimatePreference === "Yes") {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Dubai.
+            </p>
+          );
+        } else {
+          if (facts.starbucksFan === null) {
+            return askQuestion("starbucksFan", "Are you a fan of Starbucks?", [
+              "Yes",
+              "No",
+            ]);
+          }
+
+          if (facts.starbucksFan === "Yes") {
+            return (
+              <p className={style.destination}>
+                Your ideal destination is Seattle.
+              </p>
+            );
+          } else {
+            if (facts.broadwayShowsInterest === null) {
+              return askQuestion(
+                "broadwayShowsInterest",
+                "Do you like Broadway shows?",
+                ["Yes", "No"]
+              );
+            }
+
+            if (facts.broadwayShowsInterest === "Yes") {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is New York.
+                </p>
+              );
+            } else {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is Vancouver.
+                </p>
+              );
+            }
+          }
+        }
+      }
+
+      if (facts.cityType === "Cultural") {
+        if (facts.artAndMuseumsInterest === null) {
+          return askQuestion(
+            "artAndMuseumsInterest",
+            "Are you interested in art and museums?",
+            ["Yes", "No"]
+          );
+        }
+
+        if (facts.artAndMuseumsInterest === "Yes") {
+          return (
+            <p className={style.destination}>
+              Your ideal destination is Paris.
+            </p>
+          );
+        } else {
+          if (facts.festivalsInterest === null) {
+            return askQuestion(
+              "festivalsInterest",
+              "Would you like a city with festivals?",
+              ["Yes", "No"]
+            );
+          }
+
+          if (facts.festivalsInterest === "Yes") {
+            return (
+              <p className={style.destination}>
+                Your ideal destination is Rio de Janeiro.
+              </p>
+            );
+          } else {
+            if (facts.foodSceneInterest === null) {
+              return askQuestion(
+                "foodSceneInterest",
+                "Do you prefer a city known for its food scene?",
+                ["Yes", "No"]
+              );
+            }
+
+            if (facts.foodSceneInterest === "Yes") {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is Barcelona.
+                </p>
+              );
+            } else {
+              return (
+                <p className={style.destination}>
+                  Your ideal destination is Kyoto.
+                </p>
+              );
+            }
+          }
+        }
+      }
     }
 
     return (
-      <div>
-        <p>{result}</p>
-        <p>{conclusion}</p>
-      </div>
+      <p className={style.destination}>
+        No destination found based on your preferences.
+      </p>
     );
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <h1 className={style.headerOne}>
-        Forward Chaining: Insect Recogniser TEST
+        Forward Chaining: Destination Recommender
       </h1>
       {forwardChain()}
-      <img
-        src={leaf}
-        alt="image"
-        style={{ marginTop: "25px", width: "250px" }}
-      />
+      {/* Reset button */}
+      <button
+        className={style.resetButton}
+        onClick={resetFacts}
+        style={{ marginTop: "20px" }}
+      >
+        <img src={replayIcon} alt="replay button" />
+      </button>
     </div>
   );
 }
