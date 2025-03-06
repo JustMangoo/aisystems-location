@@ -21,9 +21,8 @@
 
 /* Hover effect */
 .PrimaryButton:hover {
-  background-color: white; /* Dark blue background */
-  border: none;
-  color: #4864ab; /* Keep text color white */
+  background-color: white;
+  color: #4864ab;
 }
 
 .hero {

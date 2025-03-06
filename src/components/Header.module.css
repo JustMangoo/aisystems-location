@@ -1,58 +1,53 @@
-
-
 .header {
   background-color: #4864ab;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
   margin-bottom: 50px;
 }
 
-  
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .logo {
-    height: 45px; 
-  }
-  
-  .brandName {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav p {
-    margin: 0;
-  }
-  
-  .nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 13px 15px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease-in-out;
-    border-radius: 10px;
-  }
-  
-  .nav a:hover {
-    background-color: white;
-    color: #4864ab;
-    border: 2px solid white;
-    border-radius: 10px;
-  }
-  
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+.logo {
+  height: 45px;
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav p {
+  margin: 0;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 13px 15px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.nav a:hover {
+  background-color: white;
+  color: #4864ab;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
