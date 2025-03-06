@@ -7,7 +7,7 @@ import Home from "./views/Home";
 
 const router = createBrowserRouter([
   {
-    path: "/aisystems/",
+    path: "/aisystems-location/",
     element: <Layout />,
     children: [
       {
