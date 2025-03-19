@@ -7,6 +7,16 @@
   margin-bottom: 50px;
 }
 
+@media only screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+}
+
 .logoContainer {
   display: flex;
   align-items: center;
@@ -27,6 +37,12 @@
 .nav {
   display: flex;
   gap: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav {
+    gap: 8px;
+  }
 }
 
 .nav p {
